@@ -1,0 +1,275 @@
+#include <stdio.h>
+#include <locale.h>
+
+
+
+int main ( ) {
+	
+	/*PRIMEIRO, AQUI TEM AS VARIEÁVEIS QUE FORAM USADAS PARA FAZER A MECÂNICA DO JOGO, SE BASEANDO NUMA MATRIZ [3][3], ALTERANDO ENTRE 
+	JOGADOR X E O*/
+		
+	setlocale(0, "portuguese");
+	char matriz [3][3];
+	int linha, coluna;
+	int posicao;
+	int i;
+	int jogadas = 0;
+	char atual = 'X';
+	char vencedor = 'E';
+	
+	/* PRIMEIRA APRESENTAÇÃO DO JOGO PARA O PARTICIPANTE*/
+	
+	printf("\tBEM VINDO AO JOGO DA VELHA (*-*)\n\n");
+	
+	for(linha = 0; linha < 3; linha ++){
+		for ( coluna = 0; coluna < 3; coluna ++ ){
+			matriz[linha][coluna]= '.';
+
+		}
+		
+		
+	}
+	
+	while (1){
+		
+		for(linha = 0; linha < 3; linha ++){
+			printf("\n\n");
+			printf("\t");
+			for ( coluna = 0; coluna < 3; coluna ++ ){
+			printf("%c", matriz [linha][coluna]);
+			printf("\t");
+			}
+		}
+		
+		/*PERGUNTA EM QUE POSIÇÃO O JOGADOR DESEJA JOGAR, CAPTURANDO POSIÇÃO COM NÚMERAÇÃO*/
+	
+	printf("\n\n\tVez do jogador %c, em que posição deseja jogar?", atual);
+	scanf("%d", &posicao);
+	
+	/*SEQUÊNCIA DE IF ELSE QUE VERFICA SE O CAMPO JA ESTÁ PRENCHIDO, SE SIM A JOGADA FICA COMO INVÁLIDA E SE NÃO PREENCHE COM O SÍMBOLO 
+	DO JOGADOR ATUAL*/
+	
+	if(posicao < 1 || posicao > 9){
+		
+		printf("\n\n\tPosicão inválida, por favor digite uma posição de 1 a 9");
+		continue;
+	}
+	if (posicao == 1){
+		
+		if (matriz[0][0] != '.') {
+			
+			printf("\n\n\tEssa posição já foi preenchida, por favor digite outra");
+			continue;
+		}
+			
+		matriz[0][0] = atual;
+	}
+	else if (posicao == 2){
+		
+		if (matriz[0][1] != '.') {
+			
+			printf("\n\n\tEssa posição já foi preenchida, por favor digite outra");
+			continue;
+		}
+		
+		matriz[0][1] = atual;
+		
+	}
+	else if (posicao == 3){
+		
+		if (matriz[0][2] != '.') {
+			
+			printf("\n\n\tEssa posição já foi preenchida, por favor digite outra");
+			continue;
+		}
+		
+		matriz[0][2] = atual;
+		
+	}
+	else if (posicao == 4){
+		
+		if (matriz[1][0] != '.') {
+			
+			printf("\n\n\tEssa posição já foi preenchida, por favor digite outra");
+			continue;
+		}
+		
+		matriz[1][0] = atual;
+		
+	}
+	else if (posicao == 5){
+		
+		if (matriz[1][1] != '.') {
+			
+			printf("\n\n\tEssa posição já foi preenchida, por favor digite outra");
+			continue;
+		}
+		
+		matriz[1][1] = atual;
+		
+	}
+	else if (posicao == 6){
+		
+		if (matriz[1][2] != '.') {
+			
+			printf("\n\n\tEssa posição já foi preenchida, por favor digite outra");
+			continue;
+		}
+		
+		matriz[1][2] = atual;
+		
+	}
+	else if (posicao == 7){
+		
+		if (matriz[2][0] != '.') {
+			
+			printf("\n\n\tEssa posição já foi preenchida, por favor digite outra");
+			continue;
+		}
+		
+		matriz[2][0] = atual;
+		
+	}
+	else if (posicao == 8){
+		
+		if (matriz[2][1] != '.') {
+			
+			printf("\n\n\tEssa posição já foi preenchida, por favor digite outra");
+			continue;
+		}
+		
+		matriz[2][1] = atual;
+		
+	} 
+	else if (posicao == 9){
+		
+		if (matriz[2][2] != '.') {
+			
+			printf("\n\n\tEssa posição já foi preenchida, por favor digite outra");
+			continue;
+		}
+		
+		matriz[2][2] = atual;
+		
+		/*AQUI DEFINE QUEM GANHA, SE UMA COLUNA, LINHA OU "TRANVERSAL" ESTEJA COMPLETA POR QUALQUER UM DOS JOGADORES MUDANDO A VARIÁVEL
+		QUE FOI INICIADA EM 'E' O PROGRMA DA UM BREAK*/
+		
+	}
+	
+	for(linha = 0; linha < 3; linha ++ ) {
+		
+		if(matriz[linha][0] == 'X' && matriz [linha][1] == 'X' && matriz [linha][2] == 'X') {
+		
+		
+			vencedor = 'X';
+			break;
+		}
+	}
+	
+		for(coluna = 0; coluna < 3; coluna ++ ) {
+		
+		if(matriz[0][coluna] == 'X' && matriz [1][coluna] == 'X' && matriz [2][coluna] == 'X') {
+		
+		
+			vencedor = 'X';
+			break;
+		}
+	}
+	
+		
+		if(matriz[0][0] == 'X' && matriz [1][1] == 'X' && matriz [2][2] == 'X') {
+		
+		
+			vencedor = 'X';
+			
+		}
+		
+		else if(matriz[2][0] == 'X' && matriz [1][1] == 'X' && matriz [0][2] == 'X') {
+		
+		
+			vencedor = 'X';
+			
+		}
+		
+			
+	
+	for(linha = 0; linha < 3; linha ++ ) {
+		
+		if(matriz[linha][0] == 'O' && matriz [linha][1] == 'O' && matriz [linha][2] == 'O') {
+		
+		
+			vencedor = 'O';
+			break;
+		}
+	}
+	
+		for(coluna = 0; coluna < 3; coluna ++ ) {
+		
+		if(matriz[0][coluna] == 'O' && matriz [1][coluna] == 'O' && matriz [2][coluna] == 'O') {
+		
+		
+			vencedor = 'O';
+			break;
+		}
+	}
+	
+		
+		if(matriz[0][0] == 'O' && matriz [1][1] == 'O' && matriz [2][2] == 'O') {
+		
+		
+			vencedor = 'O';
+			
+		}
+		
+		else if(matriz[2][0] == 'O' && matriz [1][1] == 'O' && matriz [0][2] == 'O') {
+		
+		
+			vencedor = 'O';
+			
+		}
+		jogadas ++;
+		
+		
+		
+		if (vencedor != 'E' || jogadas == 9)
+			
+			break;
+			
+
+		if (jogadas % 2 ==0){
+			
+			atual = 'X';
+		}
+		else {
+			
+			atual = 'O';
+		}
+	}
+	
+	/*ÚLTIMA APRESENTAÇÃO DO TABULEIRO, COMO ELE FOI ENCERRADO E APRERSENTANDO O VENCEDOR*/
+	
+	
+		for(linha = 0; linha < 3; linha ++){
+			printf("\n\n");
+			printf("\t");
+			for ( coluna = 0; coluna < 3; coluna ++ ){
+			printf("%c", matriz [linha][coluna]);
+			printf("\t");
+			}
+		}
+		
+		if(vencedor == 'X'){
+			
+			printf("\n\nPARABÉNSSS, JOGADOR X FOI O VENCEDOR!!!");
+		}
+		else if (vencedor == 'O'){
+			
+			printf("\n\nPARABÉNSSS, JOGADOR O FOI O VENCEDOR!!!");
+		}
+		else {
+			
+			printf("\n\n\tQUASE, MAS DEU VELHAAA!!!");
+		}
+		
+			
+}
